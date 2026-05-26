@@ -41,13 +41,13 @@ public class ClienteService {
         if (!repository.existsById(id)){
             throw new IllegalArgumentException("Cadastro não localizado ❌");
         }
-        ClienteModel clienteUpdate = new ClienteModel();
-        clienteUpdate.setId(id);
+        ClienteModel clienteUpdate = repository.findById(id).get();
+
         clienteUpdate.setNome(updateClienteDTO.getNome());
         clienteUpdate.setCpf(updateClienteDTO.getCpf());
         clienteUpdate.setDataNascimento(updateClienteDTO.getDataNascimento());
         clienteUpdate.setEmail(updateClienteDTO.getEmail());
-        clienteUpdate.setSenha(updateClienteDTO.getSenha());
+        clienteUpdate.setSenha(passwordEncoder.encode(updateClienteDTO.getSenha()));
 
         return repository.save(clienteUpdate);
     }

@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface FornecedorRepository extends JpaRepository<FornecedorModel, Long> {
     Optional<FornecedorModel> findByEmail(String email);
+
 }

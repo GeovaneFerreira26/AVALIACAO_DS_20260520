@@ -46,8 +46,8 @@ public class FuncionarioService {
         if (!repository.existsById(id)){
             throw new IllegalArgumentException("Cadastro não localizado ❌");
         }
-        FuncionarioModel funcionarioUpdate = new FuncionarioModel();
-        funcionarioUpdate.setId(id);
+        FuncionarioModel funcionarioUpdate = repository.findById(id).get();
+
         funcionarioUpdate.setNome(updateFuncDTO.getNome());
         funcionarioUpdate.setCpf(updateFuncDTO.getCpf());
         funcionarioUpdate.setEmail(updateFuncDTO.getEmail());
